@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6032547017</title>
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./js//lib/bootstrap.min.js"></script>
+    <script src="./js/lib/face-api.min.js"></script>
+
+    <script src="./js/lib/pouchdb.min.js"></script>
+    <script src="./js/lib/pouchdb.find.js"></script>
+
+    <link rel="stylesheet" href="./css/lib/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+      <br>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+          <div class="row">
+          <div class="col-sm">
+            <video id="webcam" autoplay muted onPlay ="onPlay()" ></video>
+            <canvas id='webcamOverlay' class="overlay" style="display: none;"></canvas>
+          </div>
+          <div class="col-sm">
+            Phanuphong Kwanwong
+          </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+
+
+        <!-- กรอกข้อมูล -->
+
+        <!-- HEAD -->
+        <div class="py-4 text-center">
+          <h2>การไฟฟ้าส่วนภูมิภาค เขต 2 ภาคเหนือ (พิษณุโลก)</h2>
+          <div class="row">
+            <div class="col-md-4 order-md-2 mb-4 container">
+              <p class="lead">APPLICATION FOR EMPLOYMENT <br>ใบสมัครงาน</br>กรอกข้อมูลด้วยตัวท่านเอง</p> 
+              
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+
+        <!-- END-HEAD -->
+
+
+        <!-- UP_PIC -->
+        <div class="row">
+          <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="text-center">
+              <span class="text-muted">คลิกที่นี่เพื่ออัพโหลดรูปภาพ</span>
+            </h4>
+            <center>
+              <label id="uploadLable" for="upload">
+              <img id="img" width="300" height="300">
+              </br>
+              </br>
+              <input id="upload" name="upload" type="file" accept="image/*" style="display: none;" />
+              </label>
+            </center>
+          </div>
+          
+        <!-- END-UP_PIC -->
+          <div class="col-md-8 order-md-1 text-center">
+            <div class="row">
+              <div class="col-md-3 mb-3 ">
+                <label for="title">คำนำหน้าชื่อ</label>
+                <select class="custom-select" id="Title">
+                  <option selected>--กรุณาเลือก--</option>
+                  <option value="1">นาย</option>
+                  <option value="2">นาง</option>
+                  <option value="3">นางสาว</option>
+                </select>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label for="name">ชื่อ(ภาษาไทย)</label>
+                <input type="text" class="form-control" id="Tname" placeholder="ชื่อ">
+              </div>
+
+              <div class="col-md-5 mb-3">
+                <label for="lastname">นามสกุล(ภาษาไทย)</label>
+                <input type="text" class="form-control" id="Tlastname" placeholder="นามสกุล">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 mb-3">
+                <label for="Cid">เลขบัตรประชาชน</label>
+                <input type="text" class="form-control" id="Cid" placeholder="เลขบัตรประชน 13 หลัก">
+
+              </div>
+
+              <div class="col-md-5 mb-3">
+                <label for="Bday">วัน/เดือน/ปีเกิด</label>
+                <input type="text" class="form-control" id="Bday" placeholder="xxxxxxxx">
+
+              </div>
+
+              <div class="col-md-2 mb-3 ">
+                <label for="Gblood">กรุ๊ปเลือด</label>
+                <select class="custom-select" id="Gblood">
+                  <option value="A" selected>A</option>
+                  <option value="B">B</option>
+                  <option value="AB">AB</option>
+                  <option value="O">O</option>
+                </select>
+              </div>
+
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="row">
+
+              <div class="col-md-6 mb-3">
+                <label for="Cbirth">ภูมิลำเนา</label>
+                <input type="text" class="form-control" id="Cbirth" placeholder="จังหวัด">
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <label for="Race">เชื้อชาติ</label>
+                <input type="text" class="form-control" id="Race" placeholder="เชื้อชาติ">
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <label for="Nationality">สัญชาติ</label>
+                <input type="text" class="form-control" id="Nationality" placeholder="สัญชาติ">
+              </div>
+
+            </div>
+
+
+
+            <hr class="mb-4">
+
+
+
+            <div class="row">
+
+              <div class="col-md-3 mb-3">
+                <label for="Hid">บ้านเลขที่</label>
+                <input type="text" class="form-control" id="Hid">
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <label for="Swine">หมู่</label>
+                <input type="text" class="form-control" id="Swine">
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <label for="District">ตำบล</label>
+                <input type="text" class="form-control" id="District">
+              </div>
+
+              
+              <div class="col-md-3 mb-3">
+                <label for="Canton">อำเภอ</label>
+                <input type="text" class="form-control" id="Canton">
+              </div>
+
+            </div>
+
+
+
+            <div class="row">
+
+              <div class="col-md-3 mb-3">
+                <label for="Province">จังหวัด</label>
+                <input type="text" class="form-control" id="Province">
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <label for="Postcode">รหัสไปรษณีย์</label>
+                <input type="text" class="form-control" id="Postcode">
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <label for="Htel">โทรศัพท์บ้าน</label>
+                <input type="text" class="form-control" id="Htel" placeholder="xxx-xxxxxx">
+              </div>
+
+              
+              <div class="col-md-3 mb-3">
+                <label for="Ptel">โทรศัพท์มือถือ</label>
+                <input type="text" class="form-control" id="Ptel" placeholder="xxx-xxxxxxx">
+              </div>
+
+            </div>
+
+
+            <hr class="mb-4">
+
+
+            <div class="row">
+
+              <div class="col-md-6 mb-3">
+                <label for="School">จบการศึกษาจากสถานศึกษา</label>
+                <input type="text" class="form-control" id="School">
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <label for="Yend">ปีที่จบ</label>
+                <input type="text" class="form-control" id="Yend" placeholder="ปีพุทธศักราช">
+              </div>
+
+              <div class="col-md-3 mb-3">
+                <label for="Gpa">เกรดเฉลี่ย</label>
+                <input type="text" class="form-control" id="Gpa" placeholder="x.xx">
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3 ">
+                <label for="BEducational">วุติการศึกษา</label>
+                <select class="custom-select" id="BEducational">
+                  <option selected>--กรุณาเลือก--</option>
+                  <option value="1">ปวส.</option>
+                  <option value="2">ปริญญาตรี</option>
+                </select>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="Subject">สาขา</label>
+                <input type="text" class="form-control" id="Subject">
+              </div>
+            </div>
+            <hr class="mb-4">
+
+            <button class="btn btn-primary" type="submit" id="profileSubmit">บันทึกข้อมูล</button><br>
+
+            <hr class="mb-4">
+
+          </div>
+        </div>
+              
+
+    <script src="./js/util.js"></script>
+    <script src="./js/webcam.js"></script>
+    <script src="./js/upload.js"></script>
+</body>
+</html>
